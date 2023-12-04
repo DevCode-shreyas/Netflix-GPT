@@ -1,9 +1,6 @@
-function App() {
-  return (
-    <div className="App">
-      <h1 className="text-4xl font-bold text-red-500 ">Netflix GPT</h1>
-    </div>
-  );
-}
+import Body from "./components/Body";
 
+function App() {
+  return <Body />;
+}
 export default App;
