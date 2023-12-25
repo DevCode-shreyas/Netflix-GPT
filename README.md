@@ -24,7 +24,7 @@
 - Custom Hook for Now Playing Movies
 - Create movieSlice
 - Update Store with movies Data
-- Planning for MainContauiner & secondary container
+- Planning for MainContainer & secondary container
 - Fetch Data for Trailer Video
 - Update Store with Trailer Video Data
 - Embedded the Yotube video and make it autoplay and mute

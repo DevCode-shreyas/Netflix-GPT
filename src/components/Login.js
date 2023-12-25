@@ -7,15 +7,14 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_URL, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -28,9 +27,11 @@ const Login = () => {
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
     if (message) return;
+    // if message is not null, then return from the function / don' kt go further
 
     if (!isSignInForm) {
       // sign up logic
+      // firebase auth function createUserWithEmailAndPassword
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -42,7 +43,7 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name.current.value,
-            // photoURL: USER_AVATAR,
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -76,7 +77,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -88,6 +88,7 @@ const Login = () => {
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
+    // toggle the state of isSignInForm variable to show/hide the form fields
   };
 
   return (
@@ -95,9 +96,9 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          className="h-screen object-cover"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="Logo"
+          className="bg-cover h-screen w-screen"
+          src={BG_URL}
+          alt="background_image"
         />
       </div>
 
@@ -107,6 +108,8 @@ const Login = () => {
       >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
+
+          {/* TODO: Add a ternary operator to show "Sign In" or "Sign Up" based on the value of isSignInForm variable */}
         </h1>
 
         {!isSignInForm && (
@@ -129,6 +132,9 @@ const Login = () => {
           placeholder="Password"
           className="p-4 my-4 w-full bg-gray-700"
         />
+
+        {/* error message */}
+
         <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
         <button
           className="p-4 my-6 bg-red-700 w-full rounded-lg"
