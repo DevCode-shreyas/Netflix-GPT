@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
@@ -10,13 +9,13 @@ const MainContainer = () => {
   //   if movies are not present, return nothing
   // also known as early return or guard clause
 
-  const mainMovie = movies[0];
-  console.log(mainMovie);
+  const mainMovie = movies[Math.floor(Math.random() * movies.length)];
+  // console.log(mainMovie);
 
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="pt-[30%] bg-black md:pt-0">
+    <div className="pt-[20%] bg-black md:pt-0">
       <VideoTitle title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>
