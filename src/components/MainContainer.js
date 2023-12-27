@@ -10,7 +10,6 @@ const MainContainer = () => {
   // also known as early return or guard clause
 
   const mainMovie = movies[Math.floor(Math.random() * movies.length)];
-  // console.log(mainMovie);
 
   const { original_title, overview, id } = mainMovie;
 

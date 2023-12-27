@@ -22,7 +22,6 @@ const Login = () => {
 
   const handleButtonClick = () => {
     // validate the form data
-    // console.log(email.current.value, password.current.value);
 
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
@@ -39,7 +38,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          // console.log(user);
 
           updateProfile(user, {
             displayName: name.current.value,
@@ -63,7 +61,7 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // console.log(errorCode, errorMessage);
+
           setErrorMessage(errorCode + "-" + errorMessage);
         });
     } else {
@@ -77,7 +75,6 @@ const Login = () => {
           // Signed in
           // eslint-disable-next-line no-unused-vars
           const user = userCredential.user;
-          // console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
