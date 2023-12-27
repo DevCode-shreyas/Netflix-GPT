@@ -94,7 +94,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          className="bg-cover h-screen w-screen"
+          className="bg-cover h-screen w-screen object-cover"
           src={BG_URL}
           alt="background_image"
         />
@@ -123,12 +123,14 @@ const Login = () => {
           type="text"
           placeholder="Email Address"
           className="p-4 my-4 w-full bg-gray-700"
+          autoComplete="username"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
           className="p-4 my-4 w-full bg-gray-700"
+          autoComplete="current-password"
         />
 
         {/* error message */}
